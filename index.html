@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Mod 2015.10.14 baier -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="EY | RSVP">
+<meta http-equiv="Cache-control" content="no-cache">
+<meta http-equiv="pragma" content="no-cache">
+<meta name="author" content="EY">
+<title>EY | RSVP</title>
+<link rel="shortcut icon" href="https://rsvp.ey.com/CSG3/_wps/img/eyfavicon.gif">
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://rsvp.ey.com/CSG3/css/boot/3.1.1_bootstrap.min.css">
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href="https://rsvp.ey.com/CSG3/css/boot/ey_styles_3.1.1_bootstrap.css">
+<!-- END Custom styles for this template -->
+<script src="https://rsvp.ey.com/CSG3/js/mmugUtilityV08.js" type='text/javascript'></script>
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<!-- START custom validation for this template -->
+
+
+<script>
+  function EY_validateForm(){
+
+   var controlArray =
+      [ 
+		//[3,['radio_A.1','radio_A.2'],"Attending"]
+		//[1,"FLD_BL01_A","Field 1_A"]
+		//[5,'FLD_BL01_C',"Email"]
+	 ];
+   var MyReplyText = EY_validateInputs(controlArray);
+   if(MyReplyText == null){
+		return true;
+		//document.Form1.submit(); //no errors found
+   }else {
+      alert("Required items are not complete:\n"+MyReplyText); //report problems
+	  return false;
+   }
+}
+
+function getURLParameter(name) {
+  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
+}
+
+
+function validateEmail(email) { 
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email.trim());
+	//if (validateEmail(email)
+}
+
+function removeClass(myID,myClass) {
+	myID.className = myID.className.replace( new RegExp('(?:^|\\s)'+myClass+'(?!\\S)') ,'');
+}
+
+function myValidate(myButton) {
+	$("span").remove(".missingMsg");
+	var form = document.forms[0],
+	inputs = form.elements;
+	var required = [], att, val;
+        // loop through input elements looking for required
+		var errtext = document.createTextNode('This field is required');
+        for (var i = 0; i < inputs.length; i++) {
+                att = inputs[i].getAttribute('required');
+				
+                // if required, get the value and trim whitespace
+                if (att != null) {
+                    val = inputs[i].value;
+					removeClass(inputs[i],"missing")
+					//inputs[i].className = "form-control";
+                    // if the value is empty, add to required array
+                    if (val.replace(/^\s+|\s+$/g, '') == '' && inputs[i].type != 'email') {
+						required.push(inputs[i].placeholder);
+						inputs[i].className = inputs[i].className + " missing";
+						inputs[i].insertAdjacentHTML("afterEnd", "<span class='missingMsg'>This field is required</span>");
+						
+                    };
+
+					//if ((inputs[i].type == 'email') && !(validateEmail(email)) {
+					if (inputs[i].type == 'email' && !validateEmail(val)) {
+                        required.push("Email is not valid");
+						inputs[i].className = inputs[i].className + " missing";
+						inputs[i].insertAdjacentHTML("afterEnd", "<span class='missingMsg'>Valid email is required</span>");
+                    };
+					
+					
+                }
+            }
+            // show alert if required array contains any elements
+            if (required.length > 0) {
+				 inputs[0].focus();
+                //alert('The following fields are required:\n --' + required.join('\n --'));
+				alert("Please fill out all required fields.")
+                // prevent the form from being submitted
+                return false;
+            } else {
+			if (EY_validateForm()) {
+			myButton.disabled = true;  
+			myButton.value = 'Please wait ...';
+			document.Form1.submit();}
+			}
+ };
+
+
+</script><!-- END custom validation for this template -->
+
+
+
+<style type="text/css">
+.container {
+	xwidth: 720px;
+}
+body, p, td, h1, h2, h3, h4, h5 {
+	font-family: Arial, Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #2E2E38;
+}
+label {
+	margin: 8px 0 4px 3px;
+	display: block;
+}
+.missing {
+	border: red solid 2px;
+}
+.missingMsg {
+	color: red;
+	font-size: smaller;
+}
+.indent {
+	padding-left: 15px;
+}
+.expired {
+	display: none;
+}
+.noSpacing {
+	margin:0px;
+	padding:0px;
+}
+
+.noSpacingBefore {
+	margin-top:0px;
+	padding-top:0px;
+}
+
+.noSpacingAfter {
+	margin-bottom:0px;
+	padding-bottom:0px;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<!-- START EY.COM LINE -->
+<div class="container hidden-xs" style="background:none; padding-right:0px; margin-bottom:5px; text-align:right;"> <a href="https://www.ey.com" target="_blank"><strong>ey.com</strong></a> </div>
+<!-- end container --> 
+<!-- START EY.COM LINE --> 
+
+<!-- START HEADER -->
+<div class="container">
+  <div class="header">
+    <h1>Join us</h1>
+  </div>
+  <!-- end header --> 
+</div>
+<!-- end container --> 
+<!-- END HEADER --> 
+
+<!-- START MAIN CONTENT -->
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8" style="padding-left:0px; padding-right:0px">
+      <div class="col-sm-12">
+        <h2 class="noSpacingBefore"><img src="header.jpg" width="100%"  alt="You're invited"></h2>
+      </div>
+      <!-- col-sm-12 -->
+      
+      <div class="col-sm-12">
+        <p>Body text</p>
+        <h1 class="EY1GrayText">Heading 1</h1>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+        <h4>Heading 4 </h4>
+        <h5>Heading 5</h5>
+        <p>Body text</p>
+        <p>► bullet<br>
+          ► bullet<br>
+          ► bullet</p>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong>Event details</strong></h3>
+          </div>
+          <!-- end panel-heading -->
+          <div class="panel-body">
+            <p><strong>Date</strong><br>
+              Sunday, January 1, 2015<br>
+              6:00&ndash;8:00 p.m.</p>
+            <p><strong>Location</strong><br>
+              The  Hotel <br>
+              123 Pine Street<br>
+              Anytown, NY 12345 <br>
+            </p>
+          </div>
+          <!-- end panel-body --> 
+        </div>
+        <!-- end panel panel-default --> 
+      </div>
+      <!-- end col-sm-12 --> 
+      
+    </div>
+    <!-- end col-sm-8 -->
+    
+    <div class="col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-heading" style="background-color:#ffe600">
+            <h3 class="panel-title"><strong>RSVP</strong> <small style="color:#777">(*required)</small></h3>
+          </div>
+          <div class="panel-body"> 
+            
+            <!-- START RSVP FORM -->
+            
+            <form name="Form1" id="Form1" action="https://rsvp.ey.com/CSG3/Post.aspx" method="post">
+              <!--  <form name="Form1" id="Form1" action="https://rsvp.ey.com/CSG3/Post.aspx" method="post"> --> 
+              <!-- ====================================== -->
+              <p>
+                <label for="FLD_BL01_A">Will you be attending?*</label>
+                <select class="form-control" name="FLD_BL01_A" id="FLD_BL01_A" required>
+                  <option value="" selected>Choose one</option>
+                  <option>Yes, I will attend</option>
+                  <option>No, I cannot attend</option>
+                </select>
+              </p>
+              <p>
+                <label for="FLD_BL01_B">First name*</label>
+                <input type="text" class="form-control" name="FLD_BL01_B" placeholder="First name" id="FLD_BL01_B" required>
+              </p>
+              <p>
+                <label for="FLD_BL01_C">Last name*</label>
+                <input type="text" class="form-control" name="FLD_BL01_C" placeholder="Last name" id="FLD_BL01_C" required>
+              </p>
+              <p>
+                <label for="FLD_BL01_D">Email*</label>
+                <input type="email" class="form-control" name="FLD_BL01_D" placeholder="Email" id="FLD_BL01_D" required>
+              </p>
+              <p>
+                <label for="FLD_BL01_E">Title*</label>
+                <input type="text" class="form-control" name="FLD_BL01_E" placeholder="Title" id="FLD_BL01_E" required>
+              </p>
+              <p>
+                <label for="FLD_BL01_F">Company*</label>
+                <input type="text" class="form-control" name="FLD_BL01_F" placeholder="Company" id="FLD_BL01_F" required>
+              </p>
+              <p>
+                <label for="FLD_BL01_G">Dietary restrictions</label>
+                <textarea class="form-control" name="FLD_BL01_G" id="FLD_BL01_G" cols="45" rows="5"></textarea>
+              </p>
+              <p>
+                <label>
+                  <input type="checkbox"  name="FLD_BL01_H" value="I am an EY alumni" id="FLD_BL01_H.0" />
+                  I am an EY alumni</label>
+              
+              </p>
+              <p>
+                <label>Sample radio buttons</label>
+                  <input type="radio" name="FLD_BL01_I" value="Yes" id="FLD_BL01_I_0"> Yes &nbsp;&nbsp;&nbsp;&nbsp;
+<input name="FLD_BL01_I" type="radio" id="FLD_BL01_I_1"  value="No" checked> No
+              </p>
+
+              
+              <!-- ====================================== --> 
+              
+              <span class="rsvp">
+              <input name="ProjectGuid" type="hidden" id="ProjectGuid" value="12345">
+              </span> 
+              <!-- <input type="button" class="submit" onClick="EY_validateForm(this)" value="Submit"> -->
+              
+              <input type="button" class="submit" onClick="myValidate(this)" value="Submit">
+            </form>
+            
+            <!-- END RSVP FORM --> 
+          </div> <!-- end panel body -->
+        </div><!-- end panel panel-default -->
+    </div><!-- end col-sm-4 --> 
+  </div>    <!-- end col-sm-12 --> 
+</div>
+<!-- end row --><!-- /.container --> 
+
+<!-- START FOOTER -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12" style="background-color:#CFCFCF; margin:20px 0px 0px 0px; padding:10px 0px 5px 15px">
+      <p>©2020 Ernst &amp; Young LLP  |  All rights reserved.</p>
+    </div>
+    <!-- col-sm-12 --> 
+  </div>
+  <!-- end row --> 
+</div>
+<!-- container --> 
+
+<!-- END FOOTER --> 
+
+<!-- Bootstrap core JavaScript
+    ================================================== --> 
+<!-- Placed at the end of the document so the pages load faster --> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> 
+<script src="https://rsvp.ey.com/CSG3/js/3.1.1_bootstrap.min.js"></script>
+</body>
+</html>
